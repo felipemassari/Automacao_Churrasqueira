@@ -40,7 +40,7 @@ void verificarBotao() {
       ultimoClique = millis();
 
       if (editandoOpcao) {
-
+        
         if (menuAtual == 0) {
           luz = estadoTemporario;
           Serial.print("Luz confirmado: ");
@@ -115,7 +115,6 @@ void verificarEncoder() {
       }
 
       else {
-
         if (s2 != s1) {
 
           menuAtual++;
@@ -125,7 +124,6 @@ void verificarEncoder() {
         }
 
         else {
-
           menuAtual--;
 
           if (menuAtual < 0)
@@ -141,7 +139,7 @@ void verificarEncoder() {
     retornoStatus = millis();
     ultimoS1 = s1;
   }
-    if (millis() - retornoStatus > 10000){
+    if (millis() - retornoStatus > tempoTela){
       retornoStatus = millis();
       editandoOpcao = false;
       atualizarDisplay2Status();   

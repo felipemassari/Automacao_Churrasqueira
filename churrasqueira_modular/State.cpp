@@ -7,6 +7,7 @@ int umidDHT = 60;
 bool luz = false;
 bool exaustor = false;
 bool soprador = false;
+bool ledMureta = false;
 
 bool modoAutomatico = true;
 
@@ -22,12 +23,14 @@ const char* menu[] = {
 
 const char* menuConfig[] = {
   "Modo Automatico",
+  "Tempo de Tela",
   "setTemp Exaustor",
-  "setTemp Soprador"
+  "setTemp Soprador",
+  "ledMureta"
 };
 
 const int MENU_TOTAL = 4;
-const int MENUCONFIG_TOTAL = 3;
+const int MENUCONFIG_TOTAL = 5;
 int menuAtual = 0;
 
 bool editandoOpcao = false;
@@ -36,6 +39,7 @@ bool estadoTemporario = false;
 int ultimoS1 = HIGH;
 int ultimoEstadoBotao = HIGH;
 unsigned long ultimoClique = 0;
+unsigned long tempoTela = 10000;
 const unsigned long DEBOUNCE = 250;
 
 float temperatura = 0;
