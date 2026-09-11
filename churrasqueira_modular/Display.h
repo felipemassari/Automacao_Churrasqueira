@@ -7,6 +7,8 @@ void atualizarDisplay1();
 void atualizarDisplay2Status();
 void atualizarDisplay2Opcao();
 void atualizarDisplay2Edicao();
+void atualizarDisplay2Config();
+void atualizarDisplay2ConfigEdicao();
 
 void desenharIcone20(
   Adafruit_SSD1306 &display,

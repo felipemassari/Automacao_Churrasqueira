@@ -5,5 +5,8 @@ void inicializarEncoder();
 void verificarEncoder();
 void verificarBotao();
 bool estadoMenuAtual();
+void alterarConfig(int direcao);
+void tempoDeTela();
+void controleAutomatico();
 
 #endif

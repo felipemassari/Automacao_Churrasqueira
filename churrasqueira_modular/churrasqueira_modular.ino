@@ -9,6 +9,7 @@
 #include "Display.h"
 #include "Encoder.h"
 #include "Temperature.h"
+#include "Connectivity.h"
 
 // ============================================================
 // OBJETOS DE HARDWARE
@@ -31,6 +32,8 @@ void setup() {
   Serial.println("==============================");
   Serial.println("   CHURRASQUEIRA");
   Serial.println("==============================");
+  
+  iniciarConectividade();
 
   Wire.begin(SDA_PIN, SCL_PIN);
   delay(100);
@@ -38,7 +41,6 @@ void setup() {
   // ==========================================================
   // SCANNER I2C
   // ==========================================================
-
   byte encontrados = 0;
 
   Serial.println("Procurando dispositivos I2C...");
@@ -62,6 +64,20 @@ void setup() {
 
   Serial.print("Total encontrado: ");
   Serial.println(encontrados);
+  
+  // ==========================================================
+  // RELES
+  // ==========================================================
+  pinMode(RELE_LUZ, OUTPUT);
+  pinMode(RELE_EXAUSTOR, OUTPUT);
+  pinMode(RELE_SOPRADOR, OUTPUT);
+  pinMode(RELE_LED, OUTPUT);
+
+  delay(1000);
+  digitalWrite(RELE_LUZ, HIGH);
+  digitalWrite(RELE_EXAUSTOR, HIGH);
+  digitalWrite(RELE_SOPRADOR, HIGH);
+  digitalWrite(RELE_LED, HIGH);
 
   // ==========================================================
   // OLED 1
@@ -84,9 +100,7 @@ void setup() {
   // ==========================================================
   // ENCODER
   // ==========================================================
-
   inicializarEncoder();
-
   // ==========================================================
   // PRIMEIRA LEITURA
   // ==========================================================
@@ -100,14 +114,6 @@ void setup() {
   Serial.println("Sistema iniciado.");
   Serial.println("Gire o encoder para navegar.");
   Serial.println("Pressione para entrar.");
-
-  // ==========================================================
-  // WIFI / MQTT - FUTURO
-  // ==========================================================
-  // Quando for usar, habilitar as funções em Connectivity.cpp
-  // e descomentar:
-  //
-  // iniciarConectividade();
 }
 
 // ============================================================
@@ -116,12 +122,19 @@ void setup() {
 
 void loop() {
 
+  if (!wifiConnected)
+{
+    iniciarConectividade();
+}
+
+  controleAutomatico();
   verificarEncoder();
   verificarBotao();
+  tempoDeTela();
   lerTemperatura();
 
-  // WIFI / MQTT - FUTURO:
-  // processarConectividade();
+  // WIFI / MQTT
+  processarConectividade();
 
-  delay(2);
+  delay(5);
 }

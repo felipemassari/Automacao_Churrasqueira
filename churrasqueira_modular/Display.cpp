@@ -5,6 +5,7 @@
 #include <Fonts/FreeMono12pt7b.h>
 #include <Fonts/FreeMonoBold9pt7b.h>
 #include <Fonts/FreeMonoBold12pt7b.h>
+#include <Fonts/FreeMonoBold18pt7b.h>
 #include <Fonts/FreeSansBold9pt7b.h>
 #include <Fonts/FreeSansBold12pt7b.h>
 #include <Fonts/FreeSansBold18pt7b.h>
@@ -12,6 +13,7 @@
 #include "Config.h"
 #include "State.h"
 #include "Icons.h"
+#include "Connectivity.h"
 
 extern Adafruit_SSD1306 display1;
 extern Adafruit_SSD1306 display2;
@@ -79,7 +81,7 @@ void atualizarDisplay1() {
 
   display1.setFont(&FreeMonoBold12pt7b);
   display1.setCursor(POS_BBQ_X, POS_BBQ_Y);
-  display1.print("BBQ");
+  display1.print("BBQ:");
 
   display1.setFont(&FreeSansBold18pt7b);
 
@@ -150,33 +152,12 @@ void atualizarDisplay2Opcao() {
 
   display2.clearDisplay();
   display2.setTextColor(SSD1306_WHITE);
-
-  if (menuAtual == 3) {
-
-    display2.setFont(&FreeMono12pt7b);
-    display2.setCursor(30, 20);
-    display2.print("CONFIG");
-
-    display2.setFont(NULL);
-    display2.setTextSize(1);
-
-    display2.setCursor(18, 42);
-    display2.print("Configuracao");
-
-    display2.setCursor(18, 54);
-    display2.print("sera feita depois");
-
-    display2.display();
-
-    return;
-  }
-
   display2.setFont(&FreeSansBold12pt7b);
 
-  display2.setCursor(10, 35);
+  display2.setCursor(14, 33);
   display2.print("Acionar");
 
-  display2.setCursor(20, 63);
+  display2.setCursor(5, 57);
   display2.print(menu[menuAtual]);
 
   display2.display();
@@ -186,7 +167,6 @@ void atualizarDisplay2Opcao() {
 // ============================================================
 // DISPLAY 2 - EDIÇÃO
 // ============================================================
-
 void atualizarDisplay2Edicao() {
 
   display2.clearDisplay();
@@ -203,6 +183,97 @@ void atualizarDisplay2Edicao() {
     display2.print("LIGADO");
   else
     display2.print("DESLIGADO");
+
+  display2.display();
+}
+
+// ============================================================
+// DISPLAY 2 - EDIÇÃO DE CONFIGURAÇÃO
+// ============================================================
+void atualizarDisplay2ConfigEdicao() {
+
+  display2.clearDisplay();
+  display2.setTextColor(SSD1306_WHITE);
+
+  if (menuConfigAtual == 0) {
+    // Modo Automático
+    display2.setFont(&FreeMono12pt7b);
+    display2.setCursor(5, 35);
+    display2.print(estadoConfigTemp ? "LIGADO" : "DESLIGADO");
+  }
+
+  else if (menuConfigAtual == 1) {
+    // Tempo de Tela
+    display2.setFont(&FreeMonoBold9pt7b);
+    display2.setCursor(16, 15);
+    display2.print("TEMPO");
+    display2.setCursor(1, 30);   
+    display2.print("RETORNO STATUS");
+    
+    display2.setFont(&FreeMonoBold18pt7b);
+    display2.setCursor(35, 63);
+    display2.print(valorConfigTemp);
+    display2.print(" s");
+  }
+
+  else if (menuConfigAtual == 2) {
+    // Temperatura Exaustor
+    display2.setFont(&FreeMonoBold9pt7b);
+    display2.setCursor(16, 15);
+    display2.print("EXAUSTOR");
+    display2.setCursor(1, 30);
+    display2.print("ATIVAR EM:");
+
+    display2.setFont(&FreeMonoBold18pt7b);
+    display2.setCursor(35, 63);
+    display2.print(valorConfigTemp);
+    display2.print(" C");
+  }
+
+  else if (menuConfigAtual == 3) {
+    // Temperatura Soprador
+    display2.setFont(&FreeMonoBold9pt7b);
+    display2.setCursor(16, 15);
+    display2.print("SOPRADOR");
+    display2.setCursor(1, 30);
+    display2.print("ATIVAR EM:");
+
+    display2.setFont(&FreeMonoBold18pt7b);
+    display2.setCursor(35, 63);
+    display2.print(valorConfigTemp);
+    display2.print(" C");
+  }
+
+  else if (menuConfigAtual == 4) {
+    // LED Mureta
+    display2.setFont(&FreeMonoBold9pt7b);
+    display2.setCursor(13, 15);
+    display2.print("LED MURETA");
+
+    display2.setFont(&FreeMono12pt7b);
+    display2.setCursor(5, 35);
+    display2.print(estadoConfigTemp ? "LIGADO" : "DESLIGADO");
+    publicarMQTT();
+  }
+  display2.display();
+}
+
+// ============================================================
+// DISPLAY 2 - MENU CONFIGURAÇÕES
+// ============================================================
+void atualizarDisplay2Config() {
+
+  display2.clearDisplay();
+  display2.setTextColor(SSD1306_WHITE);
+ 
+  display2.setFont(&FreeMonoBold9pt7b);
+
+  display2.setCursor(6, 15);
+  display2.print("CONFIGURAR");
+
+  display2.setFont(&FreeMonoBold12pt7b);
+  display2.setCursor(2, 35);
+  display2.print(menuConfig[menuConfigAtual]);
 
   display2.display();
 }

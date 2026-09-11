@@ -9,17 +9,6 @@
 #define SCL_PIN 1
 
 // ============================================================
-// OLED
-// ============================================================
-
-#define SCREEN_WIDTH 128
-#define SCREEN_HEIGHT 64
-#define OLED_RESET -1
-
-#define OLED1_ADDRESS 0x3D
-#define OLED2_ADDRESS 0x3C
-
-// ============================================================
 // MAX6675
 // ============================================================
 
@@ -34,6 +23,30 @@
 #define ENC_S1  10
 #define ENC_S2  8
 #define ENC_KEY 6
+
+// ============================================================
+// RELÉS
+// ============================================================
+
+#define RELE_LUZ       5
+#define RELE_EXAUSTOR  7
+#define RELE_SOPRADOR  9
+#define RELE_LED       20
+
+// Reservado para DHT11 futuro
+#define DHT_PIN 4
+
+// ============================================================
+// OLED
+// ============================================================
+
+#define SCREEN_WIDTH 128
+#define SCREEN_HEIGHT 64
+#define OLED_RESET -1
+
+#define OLED1_ADDRESS 0x3D
+#define OLED2_ADDRESS 0x3C
+
 
 // ============================================================
 // POSIÇÕES - DISPLAY 1
@@ -52,21 +65,18 @@
 #define POS_UMID_DHT_Y   14
 
 #define POS_BBQ_X        1
-#define POS_BBQ_Y        35
+#define POS_BBQ_Y        37
 
-#define POS_TEMP_BBQ_X   45
-#define POS_TEMP_BBQ_Y   40
+#define POS_TEMP_BBQ_X   55
+#define POS_TEMP_BBQ_Y   43
 
 #define POS_SOPRADOR_X   5
 #define POS_SOPRADOR_Y   44
 
 #define POS_LUZ_X        54
-#define POS_LUZ_Y        45
+#define POS_LUZ_Y        47
 
 #define POS_EXAUSTOR_X   103
-#define POS_EXAUSTOR_Y   45
-
-// Reservado para DHT11 futuro
-#define DHT_PIN 4
+#define POS_EXAUSTOR_Y   47
 
 #endif

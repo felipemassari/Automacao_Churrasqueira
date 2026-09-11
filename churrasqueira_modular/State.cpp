@@ -9,10 +9,8 @@ bool exaustor = false;
 bool soprador = false;
 bool ledMureta = false;
 
-bool modoAutomatico = true;
-
-int setTempExaustor = 100;
-int setTempSoprador = 200;
+int setTempExaustor = 35;
+int setTempSoprador = 60;
 
 const char* menu[] = {
   "Luz",
@@ -22,24 +20,34 @@ const char* menu[] = {
 };
 
 const char* menuConfig[] = {
-  "Modo Automatico",
-  "Tempo de Tela",
-  "setTemp Exaustor",
-  "setTemp Soprador",
-  "ledMureta"
+  "Modo Auto",
+  "Time Tela",
+  "Temperat. Exaustor",
+  "Temperat. Soprador",
+  "Led Muro",
+  "Voltar"
 };
 
 const int MENU_TOTAL = 4;
-const int MENUCONFIG_TOTAL = 5;
+const int MENU_CONFIG_TOTAL = 6;
 int menuAtual = 0;
+int menuConfigAtual = 0;
+int valorConfigTemp = 0;
 
 bool editandoOpcao = false;
+bool dentroConfig = false;
 bool estadoTemporario = false;
+bool modoAutomatico = false;
+bool estadoConfigTemp = false;
+bool aguardandoStatus = false;
 
 int ultimoS1 = HIGH;
+int ultimoS2 = HIGH;
 int ultimoEstadoBotao = HIGH;
+const unsigned long DEBOUNCE_ENCODER = 5;
+unsigned long ultimoMovimento = 0;
 unsigned long ultimoClique = 0;
-unsigned long tempoTela = 10000;
+unsigned long tempoTela = 10;
 const unsigned long DEBOUNCE = 250;
 
 float temperatura = 0;
