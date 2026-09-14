@@ -2,44 +2,41 @@
 #define CONFIG_H
 
 // ============================================================
+// LED CONEXAO
+// ============================================================
+#define LED_CONNECT 21
+
+// ============================================================
 // I2C
 // ============================================================
-
-#define SDA_PIN 3
-#define SCL_PIN 1
-
-// ============================================================
-// MAX6675
-// ============================================================
-
-#define MAX_SCK 0
-#define MAX_CS  2
-#define MAX_SO  21
+#define SCL_PIN 0
+#define SDA_PIN 1
 
 // ============================================================
 // ENCODER
 // ============================================================
+#define ENC_KEY 2
+#define ENC_S1  3
+#define ENC_S2  4
 
-#define ENC_S1  10
-#define ENC_S2  8
-#define ENC_KEY 6
+// ============================================================
+// MAX6675
+// ============================================================
+#define MAX_SCK 5
+#define MAX_CS  6
+#define MAX_SO  7
 
 // ============================================================
 // RELÉS
 // ============================================================
-
-#define RELE_LUZ       5
-#define RELE_EXAUSTOR  7
-#define RELE_SOPRADOR  9
+#define RELE_LUZ       8
+#define RELE_EXAUSTOR  9
+#define RELE_SOPRADOR  10
 #define RELE_LED       20
-
-// Reservado para DHT11 futuro
-#define DHT_PIN 4
 
 // ============================================================
 // OLED
 // ============================================================
-
 #define SCREEN_WIDTH 128
 #define SCREEN_HEIGHT 64
 #define OLED_RESET -1
@@ -51,7 +48,6 @@
 // ============================================================
 // POSIÇÕES - DISPLAY 1
 // ============================================================
-
 #define POS_TEMP_ICON_X  2
 #define POS_TEMP_ICON_Y  0
 
@@ -74,9 +70,9 @@
 #define POS_SOPRADOR_Y   44
 
 #define POS_LUZ_X        54
-#define POS_LUZ_Y        47
+#define POS_LUZ_Y        46
 
 #define POS_EXAUSTOR_X   103
-#define POS_EXAUSTOR_Y   47
+#define POS_EXAUSTOR_Y   43
 
 #endif
